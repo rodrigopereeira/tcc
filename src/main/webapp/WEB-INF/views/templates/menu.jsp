@@ -5,8 +5,8 @@
       <title>Inicio</title>
       <script src="resources/lib/jquery.js"></script>
       <script src="resources/angular/angular.min.js"></script>
-      
-      <script src="resources/cadastro/controllers/cadastroController.js"></script>
+      <script src="resources/angularstrap/angular-strap.min.js"></script>
+      <script src="resources/angularstrap/angular-strap.tpl.min.js"></script>
       
       <script src="resources/bootstrap/js/bootstrap.min.js"></script>
       <link rel="stylesheet" type="text/css" href="resources/bootstrap/css/bootstrap.min.css">

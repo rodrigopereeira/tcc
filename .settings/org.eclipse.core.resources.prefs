@@ -1,7 +1,10 @@
 eclipse.preferences.version=1
 encoding//src/main/webapp/WEB-INF/views=ISO-8859-1
 encoding//src/main/webapp/WEB-INF/views/inicio.jsp=UTF-8
+encoding//src/main/webapp/resources=ISO-8859-1
 encoding//src/main/webapp/resources/cadastro/controllers=UTF-8
-encoding//src/main/webapp/resources/cadastro/controllers/cadastroController.js=ISO-8859-1
+encoding//src/main/webapp/resources/cadastro/directives/gridFornecedores.js=ISO-8859-1
+encoding//src/main/webapp/resources/cadastro/directives/gridUsuarios.js=ISO-8859-1
+encoding//src/main/webapp/resources/cadastro/directives/gridVeiculos.js=ISO-8859-1
 encoding/<project>=UTF-8
 separateDerivedEncodings=true

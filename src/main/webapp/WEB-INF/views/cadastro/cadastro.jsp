@@ -2,20 +2,24 @@
 
 <c:import url="../templates/menu.jsp" />
 
+<script src="resources/cadastro/controllers/cadastroController.js"></script>
+<script src="resources/cadastro/directives/gridVeiculos.js"></script>
+<script src="resources/cadastro/directives/gridUsuarios.js"></script>
+<script src="resources/cadastro/directives/gridFornecedores.js"></script>
+
 <div ng-controller="cadastroController" class="container">
 
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#veiculos"  role="tab" data-toggle="tab">Veículos</a></li>
-    <li role="presentation"><a href="#usuarios"  role="tab" data-toggle="tab">Usuários</a></li>
-    <li role="presentation"><a href="#fornecedores"  role="tab" data-toggle="tab">Fornecedores</a></li>
+    <li role="presentation" ng-class="{'active': tabAtiva == 'veiculos'}"><a ng-click="alteraTab('veiculos')"  role="tab" data-toggle="tab">Veículos</a></li>
+    <li role="presentation" ng-class="{'active': tabAtiva == 'usuarios'}"><a ng-click="alteraTab('usuarios');"  role="tab" data-toggle="tab">Usuários</a></li>
+    <li role="presentation" ng-class="{'active': tabAtiva == 'fornecedores'}"><a ng-click="alteraTab('fornecedores');"  role="tab" data-toggle="tab">Fornecedores</a></li>
   </ul>
-
   <!-- Tab panes -->
   <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="veiculos">
+    <div role="tabpanel" class="tab-pane" ng-class="{'active': tabAtiva == 'veiculos'}" id="veiculos" ng-if="tabAtiva == 'veiculos'">
     	<div class="col-md-8" style="margin-top:5px;">
-    		<div id="grid1" ui-grid="gridVeiculos" class="grid"></div>
+    		<grid-veiculos></grid-veiculos>
     	</div>
     	<div class="col-md-4" >
     		<div class="panel panel-default" style="margin-top:5px;">
@@ -79,153 +83,166 @@
 				                </div>
 				            </div>
 				        </fieldset>
-				        <button class="btn btn-primary">Cadastrar</button>
+				        <button class="btn btn-primary" >Cadastrar</button>
 				        <button class="btn btn-default">Cancelar</button>
+				        
 					</form>	
 			 	</div>
 			</div>
     	</div>
     </div>
-    <div role="tabpanel" class="tab-pane " id="usuarios">
+    <div role="tabpanel" class="tab-pane" ng-class="{'active': tabAtiva == 'usuarios'}" id="usuarios" ng-if="tabAtiva == 'usuarios'">
     	<div class="col-md-8" style="margin-top:5px;">
-    		<div id="grid1" ui-grid="gridMotoristas" class="grid"></div>
+    		<grid-usuarios></grid-usuarios>
     	</div>
     	
     	<div class="col-md-4" >
     		<div class="panel panel-default" style="margin-top:5px;">
-				<div class="panel-heading">Cadastro de Motorista</div>
+				<div class="panel-heading">Cadastro de Usuário</div>
 			  	<div class="panel-body">
 			    	<form class="form-horizontal">
 				    	<fieldset>
 				    		<ul class="nav nav-tabs" role="tablist">
-							    <li role="presentation" class="active"><a href="#dadosMotorista"  role="tab" data-toggle="tab">Dados</a></li>
-							    <li role="presentation"><a href="#contatoMotorista"  role="tab" data-toggle="tab">Contato</a></li>
+							    <li role="presentation" class="active"><a href="#dadosUsuario"  role="tab" data-toggle="tab">Dados</a></li>
+							    <li role="presentation"><a href="#contatoUsuario"  role="tab" data-toggle="tab">Contato</a></li>
 							</ul>
 							
 							  <!-- Tab panes -->
 							  <div class="tab-content">
-							  	<div role="tabpanel" class="tab-pane active " id="dadosMotorista">
+							  	<div role="tabpanel" class="tab-pane active " id="dadosUsuario">
 							  		<div class="form-group">
 							  			<div class="col-md-4">
 				                			<label class=" control-label" for="os">Nome</label>  
-				                    		<input id="os" name="os" type="text"class="form-control input-sm" >
+				                    		<input ng-model="usuario.nome" type="text"class="form-control input-sm" >
 					                	</div>
 					                	<div class="col-md-5">
 					                		<label class=" control-label" for="os">Sobrenome</label>  
-					                    	<input id="os" name="os" type="text"class="form-control input-sm" >
+					                    	<input ng-model="usuario.sobrenome" type="text"class="form-control input-sm" >
 					                	</div>
 					                	<div class="col-md-3">
 						                	<label class=" control-label" for="os">Sexo</label>  
-						                    <select class="form-control input-sm">
-						                    
+						                    <select class="form-control input-sm" ng-model="usuario.sexo">
+						                    	<option value="M">Masc</option>
+						                    	<option value="F">Fem</option>
 						                    </select>
 						                </div>
 					                	<div class="col-md-4">
 					                		<label class=" control-label" for="os">RG</label>  
-					                    	<input id="os" name="os" type="text"class="form-control input-sm" >
+					                    	<input ng-model="usuario.rg" type="text"class="form-control input-sm" >
 					                	</div>
 					                	<div class="col-md-4">
 					                		<label class=" control-label" for="os">CPF</label>  
-					                    	<input id="os" name="os" type="text"class="form-control input-sm" >
+					                    	<input ng-model="usuario.cpf" type="text"class="form-control input-sm" >
 					                	</div>
 					                	<div class="col-md-4">
 					                		<label class=" control-label" for="os">Data de Nascimento</label>  
-					                    	<input id="os" name="os" type="text"class="form-control input-sm" >
+					                    	<input ng-model="usuario.dataNascimento" type="text" bs-datepicker class="form-control input-sm" >
 					                	</div>
 					                	<div class="col-md-7">
 					                		<label class=" control-label" for="os">Email</label>  
-					                    	<input id="os" name="os" type="text"class="form-control input-sm" >
+					                    	<input ng-model="usuario.email" type="text"class="form-control input-sm" >
 					                	</div>
 					                	<div class="col-md-5">
 						                	<label class=" control-label" for="os">Estado Civil</label>  
-						                    <select class="form-control input-sm">
-						                    
+						                    <select class="form-control input-sm" ng-model="usuario.estadoCivil">
+						                    	<option value="solteiro">Solteiro(a)</option>
+						                    	<option value="casado">Casado(a)</option>
+						                    	<option value="divorciado">Divorciado(a)</option>
+						                    	<option value="viuvo">Víuvo(a)</option>
 						                    </select>
 						                </div>
 						                
 						                <div class="col-md-5">
 						                	<label class=" control-label" for="os">Setor</label>  
-						                    <select class="form-control input-sm">
-						                    
+						                    <select class="form-control input-sm" ng-model="usuario.setor">
+						                    	
 						                    </select>
 						                </div>
 						                <div class="col-md-5">
 						                	<!-- Tipo de usuário, pode ser motorista, funcionario etc.. -->
 						                	<label class=" control-label" for="os">Tipo</label>  
-						                    <select class="form-control input-sm">
-						                    
+						                    <select class="form-control input-sm" ng-model="usuario.tipo">
+						                    	<option value="administrador">Administrador</option>
+						                    	<option value="motorista">Motorista</option>
+						                    	<option value="usuario">Usuário</option>
 						                    </select>
 						                </div>
-						                <div class="col-md-12">
-						                	<hr/>
+						                <!-- Motorista -->
+						                <div ng-if="usuario.tipo == 'motorista'">
+							                <div class="col-md-12">
+							                	<hr/>
+							                </div>
+							                <div class="col-md-5">
+						                		<label class=" control-label" for="os">Nº CNH</label>  
+						                    	<input  type="text"class="form-control input-sm" ng-model="usuario.cnh.numero">
+						                	</div>
+						                	<div class="col-md-4">
+						                		<label class=" control-label" for="os">Validade</label>  
+						                    	<input  type="text"class="form-control input-sm" ng-model="usuario.cnh.validade">
+						                	</div>
+						                	<div class="col-md-3">
+							                	<label class=" control-label" for="os">Categoria</label>  
+							                    <select class="form-control input-sm" ng-model="usuario.cnh.categoria">
+							                    
+							                    </select>
+							                </div>
 						                </div>
-						                <div class="col-md-5">
-					                		<label class=" control-label" for="os">Nº CNH</label>  
-					                    	<input id="os" name="os" type="text"class="form-control input-sm" >
-					                	</div>
-					                	<div class="col-md-4">
-					                		<label class=" control-label" for="os">Validade</label>  
-					                    	<input id="os" name="os" type="text"class="form-control input-sm" >
-					                	</div>
-					                	<div class="col-md-3">
-						                	<label class=" control-label" for="os">Categoria</label>  
-						                    <select class="form-control input-sm">
-						                    
-						                    </select>
-						                </div>
-						                <div class="col-md-12">
-						                	<hr/>
-						                </div>
-						                <div class="col-md-5">
-					                		<label class=" control-label" for="os">Usuário</label>  
-					                    	<input id="os" name="os" type="text"class="form-control input-sm" >
-					                	</div>
-					                	<div class="col-md-5">
-					                		<label class=" control-label" for="os">Senha</label>  
-					                    	<input id="os" name="os" type="password"class="form-control input-sm" >
+						                <!-- Usuário ou Administrador -->
+						                <div ng-if="usuario.tipo == 'administrador' || usuario.tipo == 'usuario'">
+							                <div class="col-md-12">
+							                	<hr/>
+							                </div>
+							                <div class="col-md-5">
+						                		<label class=" control-label" for="os">Usuário</label>  
+						                    	<input ng-model="usuario.login" type="text"class="form-control input-sm" >
+						                	</div>
+						                	<div class="col-md-5">
+						                		<label class=" control-label" for="os">Senha</label>  
+						                    	<input ng-model="usuario.senha" type="password"class="form-control input-sm" >
+						                	</div>
 					                	</div>
 					                </div>
 							  	</div>
 
-							  	<div role="tabpanel" class="tab-pane" id="contatoMotorista">
+							  	<div role="tabpanel" class="tab-pane" id="contatoUsuario">
 							  		<div class="form-group">
 							  			<div class="col-md-9">
 						                	<label class=" control-label" for="os">Rua</label>  
-						                    <input id="os" name="os" type="text"class="form-control input-sm" >
+						                    <input ng-model="usuario.endereco.rua" type="text"class="form-control input-sm" >
 						                </div>	
 						                <div class="col-md-3">
 						                	<label class=" control-label" for="os">Nº</label>  
-						                    <input id="os" name="os" type="text"class="form-control input-sm" >
+						                    <input ng-model="usuario.endereco.numero" type="text"class="form-control input-sm" >
 						                </div>
 						                <div class="col-md-3">
 						                	<label class=" control-label" for="os">Estado</label>  
 						                    <select class="form-control input-sm">
-						                    
+						                    	
 						                    </select>
 						                </div>
 						                <div class="col-md-5">
 						                	<label class=" control-label" for="os">Cidade</label>  
-						                    <input id="os" name="os" type="text"class="form-control input-sm" >
+						                    <input ng-model="usuario.endereco.cidade" type="text"class="form-control input-sm" >
 						                </div>
 						                <div class="col-md-4">
 						                	<label class=" control-label" for="os">Bairro</label>  
-						                    <input id="os" name="os" type="text"class="form-control input-sm" >
+						                    <input ng-model="usuario.endereco.bairro" type="text"class="form-control input-sm" >
 						                </div>
 						                <div class="col-md-5">
 						                	<label class=" control-label" for="os">CEP</label>  
-						                    <input id="os" name="os" type="text"class="form-control input-sm" >
+						                    <input ng-model="usuario.endereco.cep" type="text"class="form-control input-sm" >
 						                </div>	
 						                <div class="col-md-5">
 						                	<label class=" control-label" for="os">Telefone</label>  
-						                    <input id="os" name="os" type="text"class="form-control input-sm" >
+						                    <input ng-model="usuario.telefone.numero" type="text"class="form-control input-sm" >
 						                </div>
 						                <div class="col-md-2">
 						                	<label class=" control-label" for="os">Ramal</label>  
-						                    <input id="os" name="os" type="text"class="form-control input-sm" >
+						                    <input ng-model="usuario.telefone.ramal" type="text"class="form-control input-sm" >
 						                </div>
 							  			<div class="col-md-12">
 						                	<label class=" control-label" for="os">Observações</label>  
-						                    <input id="os" name="os" type="text"class="form-control input-sm" >
+						                    <input ng-model="usuario.telefone.observacoes" type="text"class="form-control input-sm" >
 						                </div>
 						                
 							  		</div>
@@ -240,9 +257,9 @@
     	</div>
     </div>
     	
-    <div role="tabpanel" class="tab-pane" id="fornecedores">
+    <div role="tabpanel" class="tab-pane" ng-class="{'active': tabAtiva == 'fornecedores'}" id="fornecedores" ng-if="tabAtiva == 'fornecedores'">
     	<div class="col-md-8" style="margin-top:5px;">
-    		<div id="grid1" ui-grid="gridMotoristas" class="grid"></div>
+    		<grid-fornecedores></grid-fornecedores>
     	</div>
     	
     	<div class="col-md-4" >
