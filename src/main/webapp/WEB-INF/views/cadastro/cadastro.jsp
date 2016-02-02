@@ -7,6 +7,8 @@
 <script src="resources/cadastro/directives/gridUsuarios.js"></script>
 <script src="resources/cadastro/directives/gridFornecedores.js"></script>
 
+<link rel="stylesheet" type="text/css" href="resources/angularstrap/angular-strap.css">
+
 <div ng-controller="cadastroController" class="container">
 
   <!-- Nav tabs -->
@@ -136,7 +138,7 @@
 					                	</div>
 					                	<div class="col-md-4">
 					                		<label class=" control-label" for="os">Data de Nascimento</label>  
-					                    	<input ng-model="usuario.dataNascimento" type="text" bs-datepicker class="form-control input-sm" >
+					                    	<input ng-model="usuario.dataNascimento" type="text" class="form-control input-sm" data-date-format="dd/MM/yyyy" bs-datepicker>
 					                	</div>
 					                	<div class="col-md-7">
 					                		<label class=" control-label" for="os">Email</label>  
@@ -249,11 +251,12 @@
 							  	</div>
 							  </div>
 				        </fieldset>
-				        <button class="btn btn-primary">Cadastrar</button>
+				        <button class="btn btn-primary" ng-click="cadastrarUsuario(usuario);">Cadastrar</button>
 				        <button class="btn btn-default">Cancelar</button>
 					</form>	
 			 	</div>
 			</div>
+			<pre>{{usuario | json}}</pre>
     	</div>
     </div>
     	

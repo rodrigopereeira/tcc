@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Funcionario {
 
-	private int codigoUsuario;
+	private int idUsuario;
 	private String nome;
 	private String sobrenome;
 	private String rg;
@@ -18,11 +18,11 @@ public class Funcionario {
 	private Telefone telefone;
 	private Endereco endereco;
 	
-	public int getCodigoUsuario() {
-		return codigoUsuario;
+	public int getIdUsuario() {
+		return idUsuario;
 	}
-	public void setCodigoUsuario(int codigoUsuario) {
-		this.codigoUsuario = codigoUsuario;
+	public void setIdUsuario(int idUsuario) {
+		this.idUsuario = idUsuario;
 	}
 	public String getNome() {
 		return nome;
