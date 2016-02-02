@@ -14,7 +14,7 @@ public class AdministradorController {
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public void cadastra (@RequestBody Administrador administrador) {
-		
+		//teste
 	}
 	
 	@RequestMapping(value="/{idUsuario}", method = RequestMethod.GET)
