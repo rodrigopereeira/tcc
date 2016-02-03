@@ -128,6 +128,10 @@
 						                    	<option value="F">Fem</option>
 						                    </select>
 						                </div>
+						                <div class="col-md-4">
+					                		<label class=" control-label" for="os">Data de Nascimento</label>  
+					                    	<input ng-model="usuario.dataNascimento" type="text" class="form-control input-sm" data-date-format="dd/MM/yyyy" bs-datepicker>
+					                	</div>
 					                	<div class="col-md-4">
 					                		<label class=" control-label" for="os">RG</label>  
 					                    	<input ng-model="usuario.rg" type="text"class="form-control input-sm" >
@@ -136,10 +140,7 @@
 					                		<label class=" control-label" for="os">CPF</label>  
 					                    	<input ng-model="usuario.cpf" type="text"class="form-control input-sm" >
 					                	</div>
-					                	<div class="col-md-4">
-					                		<label class=" control-label" for="os">Data de Nascimento</label>  
-					                    	<input ng-model="usuario.dataNascimento" type="text" class="form-control input-sm" data-date-format="dd/MM/yyyy" bs-datepicker>
-					                	</div>
+					                	
 					                	<div class="col-md-7">
 					                		<label class=" control-label" for="os">Email</label>  
 					                    	<input ng-model="usuario.email" type="text"class="form-control input-sm" >
