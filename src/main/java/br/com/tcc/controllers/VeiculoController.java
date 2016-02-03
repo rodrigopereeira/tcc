@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.tcc.model.Veiculo;
 
-@RestController
+@RestController	
 @RequestMapping("veiculo")
 public class VeiculoController {
 	
@@ -17,8 +17,8 @@ public class VeiculoController {
 		//teste
 	}
 	
-	@RequestMapping(value="/{idUsuario}", method = RequestMethod.GET)
-	public void usuario (@PathVariable int idUsuario) {
+	@RequestMapping(value="/{idVeiculo}", method = RequestMethod.GET)
+	public void usuario (@PathVariable int idVeiculo) {
 		
 	}
 	
@@ -32,8 +32,8 @@ public class VeiculoController {
 		
 	}
 	
-	@RequestMapping(value="/{idUsuario}", method = RequestMethod.DELETE)
-	public void remove (@PathVariable int idUsuario) {
+	@RequestMapping(value="/{idVeiculo}", method = RequestMethod.DELETE)
+	public void remove (@PathVariable int idVeiculo) {
 		
 	}
 

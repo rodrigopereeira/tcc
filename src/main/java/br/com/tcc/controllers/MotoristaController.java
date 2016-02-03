@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.tcc.model.Motorista;
-import br.com.tcc.model.Usuario;
 
 @RestController
 @RequestMapping("motorista")
