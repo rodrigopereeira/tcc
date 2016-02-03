@@ -8,23 +8,19 @@ app.controller("cadastroController", function ($scope, $modal, $http) {
 		$scope.tabAtiva = tab;
 	}
 	
-	$scope.cadastrarUsuario= function(usuario) {
+	$scope.cadastrarUsuario = function(tipoUsuario, usuario) {
 
-		if (usuario.tipo == 'administrador') {
-			delete usuario.tipo;
+		if (tipoUsuario == 'administrador') {
 			$http.post('administrador', usuario);
-		} else if (usuario.tipo == 'motorista') {
-			delete usuario.tipo;
+		} else if (tipoUsuario == 'motorista') {
 			$http.post('motorista', usuario);
-		} else if (usuario.tipo == 'usuario') {
-			delete usuario.tipo;
+		} else if (tipoUsuario == 'usuario') {
 			$http.post('usuario', usuario);
 		}
-		
-		
-		
-		
 	}
 	
+	$scope.cadastrarVeiculo = function (veiculo) {
+		$http.post('veiculo', veiculo);
+	}
 	
 });

@@ -32,60 +32,60 @@
 				        	<div class="form-group">
 				            	<div class="col-md-3">
 				                	<label class=" control-label" for="os">Placa</label>  
-				                    <input id="os" name="os" type="text"class="form-control input-sm" >
+				                    <input ng-model="veiculo.placa" type="text"class="form-control input-sm" >
 				                </div>
 				                <div class="col-md-9">
 				                	<label class=" control-label" for="os">Descrição</label>  
-				                    <input id="os" name="os" type="text"class="form-control input-sm" >
+				                    <input ng-model="veiculo.modelo" type="text"class="form-control input-sm" >
 				                </div>
 				                <div class="col-md-6">
 				                	<label class=" control-label" for="os">Chassi</label>  
-				                    <input id="os" name="os" type="text"class="form-control input-sm" >
+				                    <input ng-model="veiculo.chassi" type="text"class="form-control input-sm" >
 				                </div>
 				                <div class="col-md-6">
 				                	<label class=" control-label" for="os">Renavam</label>  
-				                    <input id="os" name="os" type="text"class="form-control input-sm" >
+				                    <input ng-model="veiculo.renavam" type="text"class="form-control input-sm" >
 				                </div>
 				                <div class="col-md-3">
 				                	<label class=" control-label" for="os">Ano</label>  
-				                    <input id="os" name="os" type="number"class="form-control input-sm" >
+				                    <input ng-model="veiculo.ano" type="number"class="form-control input-sm" >
 				                </div>
 				                <div class="col-md-4">
 				                	<label class=" control-label" for="os">Km Atual</label>  
-				                    <input id="os" name="os" type="number"class="form-control input-sm" >
+				                    <input ng-model="veiculo.kmAtual" type="number"class="form-control input-sm" >
 				                </div>
 				                <div class="col-md-5">
 				                	<label class=" control-label" for="os">Combustível</label>  
-				                	<select class="form-control input-sm">
+				                	<select class="form-control input-sm" ng-model="veiculo.combustivel">
 				                		<option>Alcool</option>
 				                		<option>Gasolina</option>
 				                	</select>
 				                </div>
 				                <div class="col-md-5">
 				                	<label class=" control-label" for="os">Marca</label>  
-				                    <input id="os" name="os" type="text"class="form-control input-sm" >
+				                    <input ng-model="veiculo.marca" type="text"class="form-control input-sm" >
 				                </div>
 				                <div class="col-md-4">
 				                	<label class=" control-label" for="os">Cor</label>  
-				                    <input id="os" name="os" type="text"class="form-control input-sm" >
+				                    <input ng-model="veiculo.cor" type="text"class="form-control input-sm" >
 				                </div>
 				                
 				                
 				                <div class="col-md-3">
 				                	<label class=" control-label" for="os">Valor Pago</label>  
-				                    <input id="os" name="os" type="number"class="form-control input-sm" >
+				                    <input ng-model="veiculo.valorPago" type="number"class="form-control input-sm" >
 				                </div>
 				                <div class="col-md-4">
 				                	<label class=" control-label" for="os">Últ. Troca de Pneu</label>  
-				                    <input id="os" name="os" type="text"class="form-control input-sm" >
+				                    <input ng-model="veiculo.ultimaTrocaPneu" type="text"class="form-control input-sm" >
 				                </div>
 				                <div class="col-md-4">
 				                	<label class=" control-label" for="os">Mês Pgto IPVA</label>  
-				                    <input id="os" name="os" type="text"class="form-control input-sm" >
+				                    <input ng-model="veiculo.mesIpva" type="text"class="form-control input-sm" >
 				                </div>
 				            </div>
 				        </fieldset>
-				        <button class="btn btn-primary" >Cadastrar</button>
+				        <button class="btn btn-primary" ng-click="cadastrarVeiculo(veiculo)">Cadastrar</button>
 				        <button class="btn btn-default">Cancelar</button>
 				        
 					</form>	
@@ -164,14 +164,14 @@
 						                <div class="col-md-5">
 						                	<!-- Tipo de usuário, pode ser motorista, funcionario etc.. -->
 						                	<label class=" control-label" for="os">Tipo</label>  
-						                    <select class="form-control input-sm" ng-model="usuario.tipo">
+						                    <select class="form-control input-sm" ng-model="tipoUsuario">
 						                    	<option value="administrador">Administrador</option>
 						                    	<option value="motorista">Motorista</option>
 						                    	<option value="usuario">Usuário</option>
 						                    </select>
 						                </div>
 						                <!-- Motorista -->
-						                <div ng-if="usuario.tipo == 'motorista'">
+						                <div ng-if="tipoUsuario == 'motorista'">
 							                <div class="col-md-12">
 							                	<hr/>
 							                </div>
@@ -191,7 +191,7 @@
 							                </div>
 						                </div>
 						                <!-- Usuário ou Administrador -->
-						                <div ng-if="usuario.tipo == 'administrador' || usuario.tipo == 'usuario'">
+						                <div ng-if="tipoUsuario == 'administrador' || tipoUsuario == 'usuario'">
 							                <div class="col-md-12">
 							                	<hr/>
 							                </div>
@@ -252,7 +252,7 @@
 							  	</div>
 							  </div>
 				        </fieldset>
-				        <button class="btn btn-primary" ng-click="cadastrarUsuario(usuario);">Cadastrar</button>
+				        <button class="btn btn-primary" ng-click="cadastrarUsuario(tipoUsuario, usuario);">Cadastrar</button>
 				        <button class="btn btn-default">Cancelar</button>
 					</form>	
 			 	</div>
