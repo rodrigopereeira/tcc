@@ -4,16 +4,16 @@ import java.util.Date;
 
 public class CNH {
 	
-	private int codigoCnh;
+	private int id;
 	private int numero;
 	private Date validade;
 	private String categoria;
 	
-	public int getCodigoCnh() {
-		return codigoCnh;
+	public int getId() {
+		return id;
 	}
-	public void setCodigoCnh(int codigoCnh) {
-		this.codigoCnh = codigoCnh;
+	public void setId(int id) {
+		this.id = id;
 	}
 	public int getNumero() {
 		return numero;

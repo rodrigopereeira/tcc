@@ -164,14 +164,13 @@
 						                <div class="col-md-5">
 						                	<!-- Tipo de usuário, pode ser motorista, funcionario etc.. -->
 						                	<label class=" control-label" for="os">Tipo</label>  
-						                    <select class="form-control input-sm" ng-model="tipoUsuario">
-						                    	<option value="administrador">Administrador</option>
-						                    	<option value="motorista">Motorista</option>
-						                    	<option value="usuario">Usuário</option>
+						                    <select class="form-control input-sm" 
+						                    	ng-model="usuario.tipoid" 
+						                    	ng-options="tipo.id as tipo.descricao for tipo in tipoUsuario">
 						                    </select>
 						                </div>
 						                <!-- Motorista -->
-						                <div ng-if="tipoUsuario == 'motorista'">
+						                <div ng-if="usuario.tipoid == '2'">
 							                <div class="col-md-12">
 							                	<hr/>
 							                </div>
@@ -181,17 +180,19 @@
 						                	</div>
 						                	<div class="col-md-4">
 						                		<label class=" control-label" for="os">Validade</label>  
-						                    	<input  type="text"class="form-control input-sm" ng-model="usuario.cnh.validade">
+						                    	<input  type="text"class="form-control input-sm" ng-model="usuario.cnh.validade" data-date-format="dd/MM/yyyy" bs-datepicker>
 						                	</div>
 						                	<div class="col-md-3">
 							                	<label class=" control-label" for="os">Categoria</label>  
 							                    <select class="form-control input-sm" ng-model="usuario.cnh.categoria">
-							                    
+							                    	<option value="A">A</option>
+						                    		<option value="B">B</option>
+						                    		<option value="AB">AB</option>
 							                    </select>
 							                </div>
 						                </div>
 						                <!-- Usuário ou Administrador -->
-						                <div ng-if="tipoUsuario == 'administrador' || tipoUsuario == 'usuario'">
+						                <div ng-if="usuario.tipoid == '1' || usuario.tipoid == '3'">
 							                <div class="col-md-12">
 							                	<hr/>
 							                </div>
@@ -211,29 +212,30 @@
 							  		<div class="form-group">
 							  			<div class="col-md-9">
 						                	<label class=" control-label" for="os">Rua</label>  
-						                    <input ng-model="usuario.endereco.rua" type="text"class="form-control input-sm" >
+						                    <input ng-model="usuario.contato.rua" type="text"class="form-control input-sm" >
 						                </div>	
 						                <div class="col-md-3">
 						                	<label class=" control-label" for="os">Nº</label>  
-						                    <input ng-model="usuario.endereco.numero" type="text"class="form-control input-sm" >
+						                    <input ng-model="usuario.contato.numero" type="text"class="form-control input-sm" >
 						                </div>
 						                <div class="col-md-3">
 						                	<label class=" control-label" for="os">Estado</label>  
-						                    <select class="form-control input-sm">
-						                    	
+						                    <select class="form-control input-sm" 
+						                    	ng-model="usuario.contato.estado" 
+						                    	ng-options="estado as estado for estado in estados">
 						                    </select>
 						                </div>
 						                <div class="col-md-5">
 						                	<label class=" control-label" for="os">Cidade</label>  
-						                    <input ng-model="usuario.endereco.cidade" type="text"class="form-control input-sm" >
+						                    <input ng-model="usuario.contato.cidade" type="text"class="form-control input-sm" >
 						                </div>
 						                <div class="col-md-4">
 						                	<label class=" control-label" for="os">Bairro</label>  
-						                    <input ng-model="usuario.endereco.bairro" type="text"class="form-control input-sm" >
+						                    <input ng-model="usuario.contato.bairro" type="text"class="form-control input-sm" >
 						                </div>
 						                <div class="col-md-5">
 						                	<label class=" control-label" for="os">CEP</label>  
-						                    <input ng-model="usuario.endereco.cep" type="text"class="form-control input-sm" >
+						                    <input ng-model="usuario.contato.cep" type="text"class="form-control input-sm" >
 						                </div>	
 						                <div class="col-md-5">
 						                	<label class=" control-label" for="os">Telefone</label>  
@@ -252,7 +254,7 @@
 							  	</div>
 							  </div>
 				        </fieldset>
-				        <button class="btn btn-primary" ng-click="cadastrarUsuario(tipoUsuario, usuario);">Cadastrar</button>
+				        <button class="btn btn-primary" ng-click="cadastrarUsuario(usuario);">Cadastrar</button>
 				        <button class="btn btn-default">Cancelar</button>
 					</form>	
 			 	</div>

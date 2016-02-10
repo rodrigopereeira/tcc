@@ -9,31 +9,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.tcc.dao.ContatoDAO;
-import br.com.tcc.dao.TelefoneDAO;
-import br.com.tcc.dao.UsuarioDAO;
-import br.com.tcc.model.Contato;
-import br.com.tcc.model.Telefone;
+import br.com.tcc.dao.FuncionarioDAO;
+import br.com.tcc.model.Funcionario;
 import br.com.tcc.model.Usuario;
 
 @RestController
-@RequestMapping("usuario")
-public class UsuarioController {
+@RequestMapping("funcionario")
+public class FuncionarioController {
 	
-	UsuarioDAO daoUsuario = new UsuarioDAO();
-	TelefoneDAO daoTelefone = new TelefoneDAO();
-	ContatoDAO daoContato = new ContatoDAO();
+	FuncionarioDAO daoFuncionario = new FuncionarioDAO();
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public void cadastra (@RequestBody Usuario usuario) {
 		
-		Telefone telefone = daoTelefone.cadastra(usuario.getTelefone());
-		Contato contato = daoContato.cadastra(usuario.getContato());
-		
-		usuario.setTelefone(telefone);
-		usuario.setContato(contato);
-		
-		daoUsuario.cadastra(usuario);
 	}
 	
 	@RequestMapping(value="/{id}", method = RequestMethod.GET)
@@ -42,8 +30,9 @@ public class UsuarioController {
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public @ResponseBody List<Usuario> usuarios() {
-		return null;
+	public @ResponseBody List<Funcionario> funcionarios() {
+		return daoFuncionario.listaFuncionarios();
+		
 	}
 	
 	@RequestMapping(method = RequestMethod.PUT)

@@ -1,21 +1,20 @@
 package br.com.tcc.model;
 
-public class Endereco {
+public class Contato {
 	
-	private int codigoEndereco;
+	private int id;
 	private String rua;
 	private int numero;
-	private String tipo;
 	private String bairro;
 	private String cidade;
 	private String cep;
 	private String estado;
 	
-	public int getCodigoEndereco() {
-		return codigoEndereco;
+	public int getId() {
+		return id;
 	}
-	public void setCodigoEndereco(int codigoEndereco) {
-		this.codigoEndereco = codigoEndereco;
+	public void setId(int id) {
+		this.id = id;
 	}
 	public String getRua() {
 		return rua;
@@ -28,12 +27,6 @@ public class Endereco {
 	}
 	public void setNumero(int numero) {
 		this.numero = numero;
-	}
-	public String getTipo() {
-		return tipo;
-	}
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
 	}
 	public String getBairro() {
 		return bairro;

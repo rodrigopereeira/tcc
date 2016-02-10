@@ -8,9 +8,10 @@ app.directive("gridUsuarios", function() {
     };
 });
 
-app.controller("gridUsuariosController", function($scope, $modal) {
+app.controller("gridUsuariosController", function($scope, $modal, $http) {
 
 	$scope.gridUsuarios = {
+			rowHeight: '22',
 			enableRowSelection: true, 
 			enableRowHeaderSelection: false,
 			multiSelect: false,
@@ -19,10 +20,10 @@ app.controller("gridUsuariosController", function($scope, $modal) {
 		    enableSorting: true,
             rowTemplate: "<div ng-dblclick=\"grid.appScope.visualizaUsuarioModal(row)\"  ng-repeat=\"(colRenderIndex, col) in colContainer.renderedColumns track by col.colDef.name\" class=\"ui-grid-cell\" ng-class=\"{ 'ui-grid-row-header-cell': col.isRowHeader }\" ui-grid-cell></div>",
 		    columnDefs: [
-		      { field: 'placa', displayName: 'Nome' },
-		      { field: 'descricao', displayName: 'Email' },
-		      { field: 'ano', displayName: 'Sexo' },
-		      { field: 'kmAtual', displayName: 'Tipo' }
+		      { field: 'nome', displayName: 'Nome' },
+		      { field: 'email', displayName: 'Email' },
+		      { field: 'sexo', displayName: 'Sexo' },
+		      { field: 'tipoUsuario', displayName: 'Tipo' }
 		    ],
 		    onRegisterApi: function( gridApi ) {
 		      $scope.gridApi = gridApi;
@@ -40,8 +41,22 @@ app.controller("gridUsuariosController", function($scope, $modal) {
 	$scope.visualizaUsuarioModal = function (row) {
 		var modalUsuario = {};
 		
+		if (row.entity.tipoid == 1) {
+			$http.get('administrador/' + row.entity.id).success(function (data) {
+				$scope.usuario = data;
+			})
+		} else if (row.entity.tipoid == 2) {
+			$http.get('motorista/' + row.entity.id).success(function (data) {
+				$scope.usuario = data;
+			})
+		} else if (row.entity.tipoid == 3) {
+			$http.get('usuario/' + row.entity.id).success(function (data) {
+				$scope.usuario = data;
+			})
+		}
+		
 		//motorista
-		if (row.entity.idTipoUsuario == 3) {
+		if (row.entity.tipoid == 2) {
 			modalUsuario = $modal({
 				controllerAs: 'cadastroController',
 				templateUrl: 'resources/cadastro/modal/motorista.jsp', 
@@ -51,7 +66,7 @@ app.controller("gridUsuariosController", function($scope, $modal) {
 		        
 				scope: $scope
 			});
-		} else if (row.entity.idTipoUsuario == 1 || row.entity.idTipoUsuario == 2) {
+		} else if (row.entity.tipoid == 1 || row.entity.tipoid == 3) {
 			modalUsuario = $modal({
 				controllerAs: 'cadastroController',
 				templateUrl: 'resources/cadastro/modal/usuario.jsp', 
@@ -68,6 +83,9 @@ app.controller("gridUsuariosController", function($scope, $modal) {
         });
 	}
     
-	$scope.gridUsuarios.data = [{idTipoUsuario: 3}, {idTipoUsuario: 2}, {idTipoUsuario: 1}];
+	$http.get('funcionario').success(function (data) {
+		$scope.gridUsuarios.data = data;
+	});	
+	
     
 });

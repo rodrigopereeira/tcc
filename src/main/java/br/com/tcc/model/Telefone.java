@@ -2,36 +2,22 @@ package br.com.tcc.model;
 
 public class Telefone {
 
-	private int codigoTelefone;
-	private int ddd;
+	private int id;
 	private int numero;
-	private String tipo;
 	private int ramal;
 	private String observacoes;
 	
-	public int getCodigoTelefone() {
-		return codigoTelefone;
+	public int getId() {
+		return id;
 	}
-	public void setCodigoTelefone(int codigoTelefone) {
-		this.codigoTelefone = codigoTelefone;
-	}
-	public int getDdd() {
-		return ddd;
-	}
-	public void setDdd(int ddd) {
-		this.ddd = ddd;
+	public void setId(int id) {
+		this.id = id;
 	}
 	public int getNumero() {
 		return numero;
 	}
 	public void setNumero(int numero) {
 		this.numero = numero;
-	}
-	public String getTipo() {
-		return tipo;
-	}
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
 	}
 	public int getRamal() {
 		return ramal;

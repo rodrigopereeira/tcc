@@ -17,8 +17,8 @@ public class VeiculoController {
 		//teste
 	}
 	
-	@RequestMapping(value="/{idVeiculo}", method = RequestMethod.GET)
-	public void usuario (@PathVariable int idVeiculo) {
+	@RequestMapping(value="/{id}", method = RequestMethod.GET)
+	public void usuario (@PathVariable int id) {
 		
 	}
 	

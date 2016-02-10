@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Funcionario {
 
-	private int idUsuario;
+	private int id;
 	private String nome;
 	private String sobrenome;
 	private String rg;
@@ -14,15 +14,18 @@ public class Funcionario {
 	private String estadoCivil;
 	private String sexo;
 	private String setor;
+	private int tipoid;
+	private String tipoUsuario;
 	
 	private Telefone telefone;
-	private Endereco endereco;
+	private Contato contato;
 	
-	public int getIdUsuario() {
-		return idUsuario;
+	
+	public int getId() {
+		return id;
 	}
-	public void setIdUsuario(int idUsuario) {
-		this.idUsuario = idUsuario;
+	public void setId(int id) {
+		this.id = id;
 	}
 	public String getNome() {
 		return nome;
@@ -78,17 +81,29 @@ public class Funcionario {
 	public void setSetor(String setor) {
 		this.setor = setor;
 	}
+	public int getTipoid() {
+		return tipoid;
+	}
+	public void setTipoid(int tipoid) {
+		this.tipoid = tipoid;
+	}
 	public Telefone getTelefone() {
 		return telefone;
 	}
 	public void setTelefone(Telefone telefone) {
 		this.telefone = telefone;
 	}
-	public Endereco getEndereco() {
-		return endereco;
+	public Contato getContato() {
+		return contato;
 	}
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
+	public void setContato(Contato contato) {
+		this.contato = contato;
+	}
+	public String getTipoUsuario() {
+		return tipoUsuario;
+	}
+	public void setTipoUsuario(String tipoUsuario) {
+		this.tipoUsuario = tipoUsuario;
 	}
 	
 }

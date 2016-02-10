@@ -21,20 +21,17 @@ public class Teste {
 		usuario.setSexo("Masc");
 		usuario.setSetor("TI");
 		
-		Endereco endereco = new Endereco();
+		Contato endereco = new Contato();
 		endereco.setRua("Fides Deeke");
 		endereco.setNumero(250);
-		endereco.setTipo("AP");
 		endereco.setBairro("Itoupava Seca");
 		endereco.setCidade("Blumenau");
 		endereco.setCep("89030210");
 		endereco.setEstado("SC");
-		usuario.setEndereco(endereco);
+		usuario.setContato(endereco);
 		
 		Telefone telefone = new Telefone();
-		telefone.setDdd(49);
 		telefone.setNumero(88316949);
-		telefone.setTipo("Celular");
 		usuario.setTelefone(telefone);
 		
 		CNH cnh = new CNH();
