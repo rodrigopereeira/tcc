@@ -2,6 +2,7 @@ package br.com.tcc.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.com.tcc.dao.Conexao;
 
@@ -9,8 +10,11 @@ import br.com.tcc.dao.Conexao;
 public class ConexaoController {
 	
 	@RequestMapping("iniciaConexao")
-	public void inicia() {
+	public @ResponseBody String inicia() {
+		@SuppressWarnings("unused")
 		Conexao conexao = new Conexao();
+		
+		return "Iniciou a conexão";
 	}
 	
 

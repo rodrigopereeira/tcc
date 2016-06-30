@@ -1,10 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"  %>
 <html>
    <head>
       <meta charset="UTF-8">
       <title>Inicio</title>
       <script src="resources/lib/jquery.js"></script>
       <script src="resources/angular/angular.min.js"></script>
+      <script src="resources/angular/angular-locale_pt-br.js"></script>
       <script src="resources/angularstrap/angular-strap.min.js"></script>
       <script src="resources/angularstrap/angular-strap.tpl.min.js"></script>
       
@@ -40,24 +42,32 @@
                         <li class="dropdown">
                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Inicio <span class="caret"></span></a>
                            <ul class="dropdown-menu">
-                              <li><a href="cadastro">Cadastros</a></li>
-                              <li><a href="#">Controle de Frota</a></li>
-                              <li><a href="#">Relatórios</a></li>
-                              <li role="separator" class="divider"></li>
-                              <li><a href="#">Permissões</a></li>
+                           		<sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_USUARIO')">
+	                            	<li><a href="cadastro">Cadastros</a></li>
+	                        	</sec:authorize>
+                              
+                              <li><a href="frota">Controle de Frota</a></li>
+                           		<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
+	                            	<li><a href="relatorio">Relatórios</a></li>
+	                        	</sec:authorize>
                            </ul>
                         </li>
                      </ul>
                      <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
-                           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Rodrigo <span class="caret"></span></a>
+                           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> ${nome} <span class="caret"></span></a>
                            <ul class="dropdown-menu">
-                              <li><a href="#">Editar Perfil</a></li>
-                              <li role="separator" class="divider"></li>
-                              <li><a href="#">Sair</a></li>
+                              <li>
+                              <a href="javascript:formSubmit()"> Sair</a>
+                              </li>
                            </ul>
                         </li>
                      </ul>
+                     
+                     <form action="j_spring_security_logout" method="post" id="logoutForm">
+					 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+						
+					</form>
                   </div>
                   <!-- /.navbar-collapse -->
                </div>
@@ -66,4 +76,9 @@
          </div>
       </div>
    </body>
+   <script>
+		function formSubmit() {
+			document.getElementById("logoutForm").submit();
+		}
+	</script>
 </html>

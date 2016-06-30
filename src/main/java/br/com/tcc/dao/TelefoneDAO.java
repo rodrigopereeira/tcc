@@ -21,7 +21,6 @@ public class TelefoneDAO {
 			stmt.setInt(2, telefone.getRamal());
 			stmt.setString(3, telefone.getObservacoes());
 			
-			System.out.println(stmt);
 			ResultSet rs = stmt.executeQuery();
 			
 			while(rs.next()) {
@@ -35,6 +34,27 @@ public class TelefoneDAO {
 		}catch(SQLException e){
 			throw new RuntimeException(e);
 		}
+	}
+	
+	public void altera(Telefone telefone) {
+	String sql = "update telefone set numero=?, ramal=?, observacoes=? where id=?;";
+
+	try (Connection connection = Conexao.getConexao()) {
+
+		PreparedStatement stmt = connection.prepareStatement(sql);
+
+		stmt.setInt(1, telefone.getNumero());
+		stmt.setInt(2, telefone.getRamal());
+		stmt.setString(3, telefone.getObservacoes());
+		stmt.setInt(4, telefone.getId());
+		
+		stmt.execute();
+		stmt.close(); 
+		connection.close();
+		
+	}catch(SQLException e){
+		throw new RuntimeException(e);
+	}
 	}
 	
 	public Telefone visualiza(Telefone telefone) {
@@ -63,7 +83,22 @@ public class TelefoneDAO {
 			throw new RuntimeException(e);
 		}
 	}
+
+	public void deleta (int id) {
+		String sql = "delete from telefone where id=?";
+		
+		try (Connection connection = Conexao.getConexao()) {
+			PreparedStatement stmt = connection.prepareStatement(sql);
+
+			stmt.setInt(1, id);
+			
+			stmt.execute();
+			stmt.close(); 
+			connection.close();
 	
-	
+		}catch(SQLException e){
+			throw new RuntimeException(e);
+		}
+	}
 
 }

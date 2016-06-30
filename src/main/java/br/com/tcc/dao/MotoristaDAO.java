@@ -17,7 +17,7 @@ public class MotoristaDAO {
 	public void cadastra(Motorista motorista){
 		
 		String sql = "insert into funcionario(nome, sobrenome, rg, cpf, dataNascimento, email, estadoCivil, sexo, tipoid, "
-				+ "cnhid, telefoneid, contatoid) values (?,?,?,?,?,?,?,?,?,?,?,?)";
+				+ "cnhid, telefoneid, contatoid, login, senha) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 		try (Connection connection = Conexao.getConexao()) {
 
@@ -35,6 +35,42 @@ public class MotoristaDAO {
 			stmt.setInt(10, motorista.getCnh().getId());
 			stmt.setInt(11, motorista.getTelefone().getId());
 			stmt.setInt(12, motorista.getContato().getId());
+			stmt.setString(13, motorista.getLogin());
+			stmt.setString(14, motorista.getSenha());
+			
+			stmt.execute();
+			stmt.close(); 
+			connection.close();
+	
+		}catch(SQLException e){
+			throw new RuntimeException(e);
+		}
+	}
+	
+	public void altera(Motorista motorista) {
+	
+		String sql = "update funcionario set nome=?, sobrenome=?, rg=?, cpf=?, dataNascimento=?, email=?, estadoCivil=?, "
+				+ "sexo=?, tipoid=?, cnhid=?, telefoneid=?, contatoid=?, login=?, senha=? where id=?";
+
+		try (Connection connection = Conexao.getConexao()) {
+
+			PreparedStatement stmt = connection.prepareStatement(sql);
+
+			stmt.setString(1, motorista.getNome());
+			stmt.setString(2, motorista.getSobrenome());
+			stmt.setString(3, motorista.getRg());
+			stmt.setString(4, motorista.getCpf());
+			stmt.setTimestamp(5, Data.retornaData(motorista.getDataNascimento()));
+			stmt.setString(6, motorista.getEmail());
+			stmt.setString(7, motorista.getEstadoCivil());
+			stmt.setString(8, motorista.getSexo());
+			stmt.setInt(9, motorista.getTipoid());
+			stmt.setInt(10, motorista.getCnh().getId());
+			stmt.setInt(11, motorista.getTelefone().getId());
+			stmt.setInt(12, motorista.getContato().getId());
+			stmt.setString(13, motorista.getLogin());
+			stmt.setString(14, motorista.getSenha());
+			stmt.setInt(15, motorista.getId());
 			
 			stmt.execute();
 			stmt.close(); 
@@ -49,7 +85,8 @@ public class MotoristaDAO {
 		
 		String sql = "select f.id, f.nome, f.email, f.sexo, f.tipoid, tu.descricao tipousuario "
 				+ "from funcionario f left join tipousuario tu on f.tipoid = tu.id "
-				+ "where tipoid = 2";
+				+ "where tipoid = 2 "
+				+ "order by f.id";
 		
 		try (Connection connection = Conexao.getConexao()) {
 			
@@ -82,7 +119,7 @@ public class MotoristaDAO {
 	public Motorista visualiza(int id) {
 		
 		String sql = "select f.id, f.nome, f.sobrenome, f.sexo, f.datanascimento, "
-				+ "f.rg, f.cpf, f.email, f.estadocivil, f.setor, f.tipoid, f.cnhid, f.contatoid, f.telefoneid "
+				+ "f.rg, f.cpf, f.email, f.estadocivil, f.setor, f.tipoid, f.cnhid, f.contatoid, f.telefoneid, f.login, f.senha "
 				+ "from funcionario f "
 				+ "where f.id = ?";
 		
@@ -109,6 +146,8 @@ public class MotoristaDAO {
 				motorista.setEstadoCivil(rs.getString("estadocivil"));
 				motorista.setSetor(rs.getString("setor"));
 				motorista.setTipoid(rs.getInt("tipoid"));
+				motorista.setLogin(rs.getString("login"));
+				motorista.setSenha(rs.getString("senha"));
 				
 				Telefone telefone = new Telefone();
 				telefone.setId(rs.getInt("telefoneid"));
@@ -133,4 +172,5 @@ public class MotoristaDAO {
 			throw new RuntimeException(e);
 		}
 	}
+
 }

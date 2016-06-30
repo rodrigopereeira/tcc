@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import br.com.tcc.model.Contato;
-import br.com.tcc.model.Telefone;
 
 public class ContatoDAO {
 
@@ -41,6 +40,29 @@ public class ContatoDAO {
 		}
 	}
 	
+	public void altera(Contato contato) {
+		String sql = "update contato set rua=?, numero=?, bairro=?, cidade=?, cep=?, estado=? where id=?;";
+		
+		try (Connection connection = Conexao.getConexao()) {
+
+			PreparedStatement stmt = connection.prepareStatement(sql);
+
+			stmt.setString(1, contato.getRua());
+			stmt.setInt(2, contato.getNumero());
+			stmt.setString(3, contato.getBairro());
+			stmt.setString(4, contato.getCidade());
+			stmt.setString(5, contato.getCep());
+			stmt.setString(6, contato.getEstado());
+			stmt.setInt(7, contato.getId());
+
+			stmt.execute();
+			stmt.close(); 
+			connection.close();
+		}catch(SQLException e){
+			throw new RuntimeException(e);
+		}
+	}
+	
 	public Contato visualiza(Contato contato) {
 
 		String sql = "select rua, numero, bairro, cidade, cep, estado from contato where id = ?";
@@ -66,6 +88,23 @@ public class ContatoDAO {
 			connection.close();
 			
 			return contato;
+		}catch(SQLException e){
+			throw new RuntimeException(e);
+		}
+	}
+
+	public void deleta (int id) {
+		String sql = "delete from contato where id=?";
+		
+		try (Connection connection = Conexao.getConexao()) {
+			PreparedStatement stmt = connection.prepareStatement(sql);
+
+			stmt.setInt(1, id);
+			
+			stmt.execute();
+			stmt.close(); 
+			connection.close();
+	
 		}catch(SQLException e){
 			throw new RuntimeException(e);
 		}

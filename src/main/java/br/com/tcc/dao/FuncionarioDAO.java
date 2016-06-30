@@ -14,7 +14,8 @@ public class FuncionarioDAO {
 	public List<Funcionario> listaFuncionarios() {
 		
 		String sql = "select f.id, f.nome, f.email, f.sexo, f.tipoid, tu.descricao tipousuario "
-				+ "from funcionario f left join tipousuario tu on f.tipoid = tu.id ";
+				+ "from funcionario f left join tipousuario tu on f.tipoid = tu.id "
+				+ "order by f.id";
 		
 		try (Connection connection = Conexao.getConexao()) {
 			
@@ -38,6 +39,23 @@ public class FuncionarioDAO {
 			connection.close();
 			
 			return listaFuncionarios;
+	
+		}catch(SQLException e){
+			throw new RuntimeException(e);
+		}
+	}
+	
+	public void deleta (int id) {
+		String sql = "delete from funcionario where id=?";
+		
+		try (Connection connection = Conexao.getConexao()) {
+			PreparedStatement stmt = connection.prepareStatement(sql);
+
+			stmt.setInt(1, id);
+			
+			stmt.execute();
+			stmt.close(); 
+			connection.close();
 	
 		}catch(SQLException e){
 			throw new RuntimeException(e);

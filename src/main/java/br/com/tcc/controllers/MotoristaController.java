@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.tcc.dao.CnhDAO;
 import br.com.tcc.dao.ContatoDAO;
+import br.com.tcc.dao.FuncionarioDAO;
 import br.com.tcc.dao.MotoristaDAO;
 import br.com.tcc.dao.TelefoneDAO;
 import br.com.tcc.model.CNH;
@@ -26,6 +27,7 @@ public class MotoristaController {
 	CnhDAO daoCnh = new CnhDAO();
 	TelefoneDAO daoTelefone = new TelefoneDAO();
 	ContatoDAO daoContato = new ContatoDAO();
+	FuncionarioDAO daoFuncionario = new FuncionarioDAO();
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public void cadastra (@RequestBody Motorista motorista) {
@@ -60,11 +62,19 @@ public class MotoristaController {
 	@RequestMapping(method = RequestMethod.PUT)
 	public void altera (@RequestBody Motorista motorista) {
 		
+		daoTelefone.altera(motorista.getTelefone());
+		daoContato.altera(motorista.getContato());
+		daoCnh.altera(motorista.getCnh());
+		
+		daoMotorista.altera(motorista);
 	}
 	
-	@RequestMapping(value="/{idUsuario}", method = RequestMethod.DELETE)
-	public void remove (@PathVariable int idUsuario) {
-		
+	@RequestMapping(value="/{id}/{telefoneid}/{contatoid}/{cnhid}", method = RequestMethod.DELETE)
+	public void remove (@PathVariable int id, @PathVariable int telefoneid, @PathVariable int contatoid, @PathVariable int cnhid) {
+		daoFuncionario.deleta(id);
+		daoTelefone.deleta(telefoneid);
+		daoContato.deleta(contatoid);
+		daoCnh.deleta(cnhid);
 	}
 
 }

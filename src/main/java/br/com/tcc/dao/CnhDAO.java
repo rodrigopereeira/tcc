@@ -13,7 +13,6 @@ public class CnhDAO {
 		
 		String sql = "insert into cnh(numero, validade, categoria) values (?,?,?) returning id;";
 		
-
 		try (Connection connection = Conexao.getConexao()) {
 
 			PreparedStatement stmt = connection.prepareStatement(sql);
@@ -36,6 +35,27 @@ public class CnhDAO {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	public void altera(CNH cnh) {
+		String sql = "update cnh set numero=?, validade=?, categoria=? where id=?;";
+		
+		try (Connection connection = Conexao.getConexao()) {
+
+			PreparedStatement stmt = connection.prepareStatement(sql);
+
+			stmt.setInt(1, cnh.getNumero());
+			stmt.setTimestamp(2, Data.retornaData(cnh.getValidade()));
+			stmt.setString(3, cnh.getCategoria());
+			stmt.setInt(4, cnh.getId());
+			
+			stmt.execute();
+			stmt.close(); 
+			connection.close();
+		}catch(SQLException e){
+			throw new RuntimeException(e);
+		}
+	}
+
 
 	public CNH visualiza(CNH cnh) {
 		
@@ -59,6 +79,23 @@ public class CnhDAO {
 			connection.close();
 			
 			return cnh;
+		}catch(SQLException e){
+			throw new RuntimeException(e);
+		}
+	}
+	
+	public void deleta (int id) {
+		String sql = "delete from cnh where id=?";
+		
+		try (Connection connection = Conexao.getConexao()) {
+			PreparedStatement stmt = connection.prepareStatement(sql);
+
+			stmt.setInt(1, id);
+			
+			stmt.execute();
+			stmt.close(); 
+			connection.close();
+	
 		}catch(SQLException e){
 			throw new RuntimeException(e);
 		}

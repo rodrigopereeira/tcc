@@ -1,10 +1,11 @@
 package br.com.tcc.model;
 
 import java.util.Date;
+import java.util.List;
 
 public class Veiculo {
 
-	private int codigoVeiculo;
+	private int id;
 	private String placa;
 	private String modelo;
 	private int ano;
@@ -13,16 +14,18 @@ public class Veiculo {
 	private String marca;
 	private String cor;
 	private String combustivel;
-	private double kmAtual;
-	private double valorPago;
+	private double km;
+	private double valor;
 	private Date ultimaTrocaPneu;
 	private int mesIpva;
+	private List<HistoricoVeiculo> historico;
+	private List<Agenda> agenda;
 	
-	public int getCodigoVeiculo() {
-		return codigoVeiculo;
+	public int getId() {
+		return id;
 	}
-	public void setCodigoVeiculo(int codigoVeiculo) {
-		this.codigoVeiculo = codigoVeiculo;
+	public void setId(int id) {
+		this.id = id;
 	}
 	public String getPlaca() {
 		return placa;
@@ -72,17 +75,17 @@ public class Veiculo {
 	public void setCombustivel(String combustivel) {
 		this.combustivel = combustivel;
 	}
-	public double getKmAtual() {
-		return kmAtual;
+	public double getKm() {
+		return km;
 	}
-	public void setKmAtual(double kmAtual) {
-		this.kmAtual = kmAtual;
+	public void setKm(double km) {
+		this.km = km;
 	}
-	public double getValorPago() {
-		return valorPago;
+	public double getValor() {
+		return valor;
 	}
-	public void setValorPago(double valorPago) {
-		this.valorPago = valorPago;
+	public void setValor(double valor) {
+		this.valor = valor;
 	}
 	public Date getUltimaTrocaPneu() {
 		return ultimaTrocaPneu;
@@ -96,4 +99,17 @@ public class Veiculo {
 	public void setMesIpva(int mesIpva) {
 		this.mesIpva = mesIpva;
 	}
+	public List<HistoricoVeiculo> getHistorico() {
+		return historico;
+	}
+	public void setHistorico(List<HistoricoVeiculo> historico) {
+		this.historico = historico;
+	}
+	public List<Agenda> getAgenda() {
+		return agenda;
+	}
+	public void setAgenda(List<Agenda> agenda) {
+		this.agenda = agenda;
+	}
+	
 }
