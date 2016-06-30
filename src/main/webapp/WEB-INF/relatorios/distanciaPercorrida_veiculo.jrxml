@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="consumoMedio_veiculo" language="groovy" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="bb873b8e-ced2-4209-b3d0-216972d385f1">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\Rodrigo\\git\\tcc\\src\\main\\webapp\\WEB-INF\\relatorios\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="class" class="java.lang.Class">
+		<fieldDescription><![CDATA[class]]></fieldDescription>
+	</field>
+	<field name="kms" class="java.util.List">
+		<fieldDescription><![CDATA[kms]]></fieldDescription>
+	</field>
+	<field name="veiculo" class="java.lang.String">
+		<fieldDescription><![CDATA[veiculo]]></fieldDescription>
+	</field>
+	<field name="kmTotalFrota" class="java.lang.Double"/>
+	<variable name="consumoMedio_1" class="java.lang.Double" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<variable name="combustivelUtilizado_1" class="java.lang.Double" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<variable name="distanciaPercorrida_1" class="java.lang.Double" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<variable name="consumoMedio_2" class="java.lang.Double" resetType="Column" calculation="Average">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="32" splitType="Stretch">
+			<rectangle>
+				<reportElement x="18" y="0" width="559" height="13" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="b9447cd2-9c43-4cb6-a1ca-fbe4eeeed6f7"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="18" y="0" width="39" height="13" uuid="ba477740-8bd5-41ed-bc5f-395ab53520d4"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Veiculo:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="57" y="0" width="100" height="13" uuid="f7b7ba1e-2299-4263-bd2f-c53f66ffdd6a"/>
+				<textElement verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$F{veiculo}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="18" y="13" width="559" height="19" uuid="4efe4817-2bb8-44e3-8dcd-fc1fd208b330"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{kms})]]></dataSourceExpression>
+				<subreportExpression><![CDATA["distanciaPercorrida_km.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="33">
+			<textField>
+				<reportElement x="124" y="15" width="100" height="15" uuid="fe85ccfb-6eca-451a-af3f-6e82e1dfed06"/>
+				<textFieldExpression><![CDATA[$F{kmTotalFrota}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="32" y="15" width="92" height="15" uuid="51d21323-7729-49ef-a3e4-2267a45e369d"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Km total da frota:]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+</jasperReport>

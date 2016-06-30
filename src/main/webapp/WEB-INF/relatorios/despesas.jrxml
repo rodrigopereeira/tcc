@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="consumoMedio" language="groovy" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="acf96842-f61d-49a6-9493-cbb336017758">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\Rodrigo\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="cabecalho" class="br.com.tcc.model.relatorio.Cabecalho">
+		<fieldDescription><![CDATA[cabecalho]]></fieldDescription>
+	</field>
+	<field name="class" class="java.lang.Class">
+		<fieldDescription><![CDATA[class]]></fieldDescription>
+	</field>
+	<field name="veiculos" class="java.util.List">
+		<fieldDescription><![CDATA[veiculos]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="50">
+			<subreport>
+				<reportElement x="0" y="0" width="595" height="50" uuid="880233d8-2c86-4286-b994-84d9ba8a457d"/>
+				<subreportParameter name="title">
+					<subreportParameterExpression><![CDATA[$F{cabecalho}.getTitulo()]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportExpression><![CDATA["header.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="50">
+			<staticText>
+				<reportElement x="15" y="10" width="75" height="13" uuid="1e90f423-2913-4ba5-8c05-1a5af8c70c00"/>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Data Inicial:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="15" y="27" width="75" height="13" uuid="891bc9e7-8d4b-428f-ab57-bc9dc4e15fd0"/>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Data Final:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="90" y="10" width="164" height="13" uuid="f618d9d3-e0ad-41c1-941a-056219a9c385"/>
+				<textFieldExpression><![CDATA[$F{cabecalho}.getDataInicial()]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="90" y="27" width="164" height="13" uuid="95a58ba2-2b91-46de-955f-9cc8ce3fd1e7"/>
+				<textFieldExpression><![CDATA[$F{cabecalho}.getDataFinal()]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="80">
+			<subreport>
+				<reportElement x="0" y="0" width="595" height="80" uuid="aa63fb79-dca6-499e-9f02-351701fa350f"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{veiculos})]]></dataSourceExpression>
+				<subreportExpression><![CDATA["despesas_veiculo.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="50">
+			<textField pattern="dd/MM/yyyy HH.mm.ss">
+				<reportElement x="480" y="25" width="100" height="20" uuid="3909db67-3bf5-401e-b134-4ff207a612df"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>
