@@ -20,7 +20,7 @@ import br.com.tcc.model.Pagamento;
 @RestController
 @RequestMapping("abastecimento")
 public class AbastecimentoController {
-	
+	teste
 	PagamentoDAO daoPagamento = new PagamentoDAO();
 	AbastecimentoDAO daoAbastecimento = new AbastecimentoDAO();
 	VeiculoDAO daoVeiculo = new VeiculoDAO();
